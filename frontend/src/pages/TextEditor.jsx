@@ -53,7 +53,7 @@ import { convertToRaw, convertFromRaw } from "draft-js";
 
   const fetchDocument = async () => {
           try {
-            const response = await fetch(`http://localhost:8080/text-editor/${id}`, {
+            const response = await fetch(import.meta.env.VITE_API_URL +"/text-editor/"+id, {
               method: "GET",
               credentials: "include",
             });
@@ -83,7 +83,7 @@ import { convertToRaw, convertFromRaw } from "draft-js";
 
   let textEditorData = async () => {
     const rawContent = convertToRaw(editorState.getCurrentContent());
-    const documentData = await fetch("http://localhost:8080/text-editor/"+id, {
+    const documentData = await fetch(import.meta.env.VITE_API_URL + "/text-editor/"+id, {
       method: "PUT",  
       headers: {
         "Content-Type": "application/json"

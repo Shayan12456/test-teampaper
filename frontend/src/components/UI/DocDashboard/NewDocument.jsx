@@ -6,7 +6,7 @@ export default function NewDocument() {
 
     const checkAuth = async () => {
         try {
-          const response = await fetch("http://localhost:8080/auth/check", {
+          const response = await fetch(import.meta.env.VITE_API_URL + "/auth/check", {
             method: "GET",
             credentials: "include", // Include HTTP-only cookies
           });
@@ -24,7 +24,7 @@ export default function NewDocument() {
         
         checkAuth();
 
-       const documentData = await fetch("http://localhost:8080/newdoc", {
+       const documentData = await fetch(import.meta.env.VITE_API_URL + "/newdoc", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json", // Set the content type to JSON
@@ -40,7 +40,7 @@ export default function NewDocument() {
         let parsedDocumentData = await documentData.json()
         console.log(parsedDocumentData.newDoc._id)
 
-        window.location.href = "http://localhost:5173/text-editor/" + parsedDocumentData.newDoc._id;
+        window.location.href = `${window.location.origin}/text-editor/` + parsedDocumentData.newDoc._id;
 
     }
     

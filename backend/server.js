@@ -16,13 +16,13 @@ const SECRET_KEY = process.env.SECRET_KEY
 //middlewares
 app.use(express.json())
 app.use(cors({
-  origin: 'http://localhost:5173', // Allow requests from your React frontend, origin is a must
+  origin: process.env.FRONTEND, // Allow requests from your React frontend, origin is a must
   credentials: true, // Allow cookies to be sent with requests
 }));//allows  frontend to access.
 app.use(cookieParser()); // ✅ Parse cookies
 
 //DB Connection
-mongoose.connect('mongodb+srv://shayandeveloper12:abcd@cluster0.gj6rrny.mongodb.net/teampaper?retryWrites=true&w=majority&appName=Cluster0').then(()=>{
+mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log("connected to database")
 });
 

@@ -6,7 +6,7 @@ export default function DocDashboard(){
   useEffect(() => {
     const func = async () => {
       try {   
-          const res = await fetch("http://localhost:8080/document", {
+          const res = await fetch(import.meta.env.VITE_API_URL + "/document", {
               method: "GET",
               credentials: "include"
             });

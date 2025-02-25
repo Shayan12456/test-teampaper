@@ -14,7 +14,7 @@ function Signup() {
 
   async function sendDataToBackend() {
     try {
-      const response = await fetch("http://localhost:8080/signup", {
+      const response = await fetch(import.meta.env.VITE_API_URL + "/signup", {
         method: "POST", // Specify the HTTP method
         headers: {
           "Content-Type": "application/json", // Set the content type to JSON
@@ -31,18 +31,18 @@ function Signup() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      window.location.href = "http://localhost:5173/document"
+      window.location.href = `${window.location.origin}/document`
       
     } catch (error) {
       console.error('Error fetching data:', error);
-      window.location.href = "http://localhost:5173/signup";
+      window.location.href = `${window.location.origin}/signup`;
     }
   }
   
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch("http://localhost:8080/auth/check", {
+        const response = await fetch(import.meta.env.VITE_API_URL + "/auth/check", {
           method: "GET",
           credentials: "include", // Include HTTP-only cookies
         });
@@ -63,7 +63,7 @@ function Signup() {
 // asynchronous function when dealt with async awit leads the sequential exec of operations either synchronous or asynchronous
   return (
     <>
-      {isAuthenticated ? window.location.href = "http://localhost:5173/tool" :
+      {isAuthenticated ? window.location.href = "/tool" :
         <div className="min-h-screen w-full flex items-center justify-center bg-background">
           <Card className="w-full max-w-md mx-4">
             <CardHeader className="space-y-1">

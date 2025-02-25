@@ -8,7 +8,7 @@ export default function Navbar(){
     useEffect(() => {
       const checkAuth = async () => {
         try {
-          const response = await fetch("http://localhost:8080/auth/check", {
+          const response = await fetch(import.meta.env.VITE_API_URL + "/auth/check", {
             method: "GET",
             credentials: "include", // Include HTTP-only cookies
           });
@@ -28,7 +28,7 @@ export default function Navbar(){
 
     async function loggingOut() {
       try {
-        const response = await fetch("http://localhost:8080/logout", {
+        const response = await fetch(import.meta.env.VITE_API_URL + "/logout", {
           method: "POST", // Specify the HTTP method
           credentials: "include", // ✅ Include credentials
         });
@@ -43,13 +43,13 @@ export default function Navbar(){
         var backlen = history.length;
         console.log(backlen);
      history.go(-backlen);
-     window.location.href = "http://localhost:5173/login"
+     window.location.href = `${window.location.origin}/login`;
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
   
-        window.location.href = "http://localhost:5173/home";
+        window.location.href = `${window.location.origin}/home`;
         
       } catch (error) {
         console.error('Error fetching data:', error);
