@@ -18,6 +18,7 @@ app.use(express.json())
 app.use(cors({
   origin: process.env.FRONTEND, // Allow requests from your React frontend, origin is a must
   credentials: true, // Allow cookies to be sent with requests
+  methods: ["GET", "PUT", "POST"]
 }));//allows  frontend to access.
 app.use(cookieParser()); // ✅ Parse cookies
 
