@@ -10,10 +10,14 @@ export default function Navbar(){
     console.log("docs", docs);
     // Handle search query change
     const handleSearchChange = (e) => {
-      const query = e.target.value;
-      setSearchQueryResult((docs.filter(doc => doc.title.toLowerCase().includes(query.toLowerCase()))));
-      console.log(searchQueryResult)
+    const query = e.target.value.trim(); // Trim spaces to prevent accidental whitespace searches
+      if (query === "") {
+        setSearchQueryResult([]); // Clear search results if input is empty
+      } else {
+        setSearchQueryResult(docs.filter(doc => doc.title.toLowerCase().includes(query.toLowerCase())));
+      }
     };
+
 
     useEffect(() => {
       const checkAuth = async () => {
