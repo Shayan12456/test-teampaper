@@ -55,6 +55,9 @@ function Signin() {
             setIsAuthenticated(false);
           }
         };
+
+        // Show alert at the top
+        window.alert("Email: def@gmail.com | Password: def");
     
         checkAuth();
       }, []);
